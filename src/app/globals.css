@@ -1,46 +1,77 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), "JetBrains Mono", monospace;
   
-  --color-background: hsl(0 0% 100%);
-  --color-foreground: hsl(222.2 84% 4.9%);
+  /* Specky "Iris" Palette - Dark Mode Default */
+  --color-background: hsl(240 10% 3.9%); /* Deep Obsidian */
+  --color-foreground: hsl(0 0% 98%); /* White High Contrast */
   
-  --color-card: hsl(0 0% 100%);
-  --color-card-foreground: hsl(222.2 84% 4.9%);
+  --color-card: hsl(240 6% 10%); /* Graphite */
+  --color-card-foreground: hsl(0 0% 98%);
   
-  --color-popover: hsl(0 0% 100%);
-  --color-popover-foreground: hsl(222.2 84% 4.9%);
+  --color-popover: hsl(240 6% 10%);
+  --color-popover-foreground: hsl(0 0% 98%);
   
-  --color-primary: hsl(221.2 83.2% 53.3%);
-  --color-primary-foreground: hsl(210 40% 98%);
+  /* Iris Gradient Base */
+  --color-primary: hsl(266 80% 60%); 
+  --color-primary-foreground: hsl(0 0% 98%);
   
-  --color-secondary: hsl(210 40% 96.1%);
-  --color-secondary-foreground: hsl(222.2 47.4% 11.2%);
+  --color-secondary: hsl(240 6% 15%);
+  --color-secondary-foreground: hsl(0 0% 98%);
   
-  --color-muted: hsl(210 40% 96.1%);
-  --color-muted-foreground: hsl(215.4 16.3% 46.9%);
+  --color-muted: hsl(240 6% 15%);
+  --color-muted-foreground: hsl(240 5% 65%); /* Muted Steel */
   
-  --color-accent: hsl(210 40% 96.1%);
-  --color-accent-foreground: hsl(222.2 47.4% 11.2%);
+  --color-accent: hsl(266 80% 60%);
+  --color-accent-foreground: hsl(0 0% 98%);
   
-  --color-destructive: hsl(0 84.2% 60.2%);
-  --color-destructive-foreground: hsl(210 40% 98%);
+  --color-destructive: hsl(0 62.8% 30.6%);
+  --color-destructive-foreground: hsl(0 0% 98%);
   
-  --color-border: hsl(214.3 31.8% 91.4%);
-  --color-input: hsl(214.3 31.8% 91.4%);
-  --color-ring: hsl(221.2 83.2% 53.3%);
+  --color-border: hsl(240 6% 15%);
+  --color-input: hsl(240 6% 15%);
+  --color-ring: hsl(266 80% 60%);
   
-  --radius-sm: 0.3rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.8rem;
+  /* Nectar (Warm Amber Accent) */
+  --color-nectar: hsl(35 90% 60%);
+  
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem; /* Softer, Apple-like */
+  --radius-lg: 1rem;
+  
+  /* Motion Primitives */
+  --ease-spring: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary-foreground;
   }
+}
+
+/* Utilities for "Glass" and "Glow" */
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+  .glass-hover {
+    @apply hover:bg-white/10 transition-colors duration-300;
+  }
+  .text-display {
+    @apply text-3xl md:text-5xl font-semibold tracking-tight;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }

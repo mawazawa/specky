@@ -153,7 +153,7 @@ The spec is so complete that an LLM can execute it without clarification:
 
 ## Context
 - App: Specky (AI specification generator)
-- Framework: Next.js 15.1 (App Router)
+- Framework: Next.js 16.1.2 (App Router)
 - Auth: Supabase Auth with PKCE flow
 - Date: January 15, 2026
 
@@ -275,9 +275,9 @@ Specky Version: 0.1.0
 **Atomic ID**: AT-001
 **Files**: 3 (package.json, tsconfig.json, next.config.ts)
 **Verified Stack**:
-- Next.js 15.1.4 (as of 2026-01-15)
-- TypeScript 5.9.3
-- Tailwind CSS 4.0.2
+- Next.js 16.1.2 (as of 2026-01-15)
+- TypeScript 5.9
+- Tailwind CSS 4.1.18
 - shadcn/ui (latest)
 
 [...detailed task spec...]

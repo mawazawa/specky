@@ -113,6 +113,7 @@ These files do NOT require date prefixes:
 | `CLAUDE.md` | Root config, always current |
 | `AGENTS.md` | Root config, always current |
 | `README.md` | Standard convention |
+| `LICENSE` | License file |
 | `package.json` | Config file |
 | `*.config.js` | Config files |
 | `.env*` | Environment files |

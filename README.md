@@ -3,8 +3,8 @@
 > **The Spec is the Moat**
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Next.js](https://img.shields.io/badge/Next.js-15+-black.svg)](https://nextjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9+-blue.svg)](https://typescriptlang.org)
+[![Next.js](https://img.shields.io/badge/Next.js-16.1.2-black.svg)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg)](https://typescriptlang.org)
 
 ---
 
@@ -35,7 +35,7 @@ Specky generates specifications so powerful that **any LLM can single-shot execu
 | Generic "slop" tests | Elite TDD patterns from real engineers |
 | Ugly AI-generated UI | Design tokens enforce Apple-level aesthetics |
 | Tasks touch too many files | Atomic decomposition: ≤3 files per task |
-| Single perspective blind spots | 6-persona debate with conflict resolution |
+| Single perspective blind spots | Role-based challenger debate + synthesis |
 
 ---
 
@@ -66,7 +66,7 @@ Specky synthesizes patterns from the best AI development tools (as of January 20
 ### Specificity (Original)
 - **What it does**: Multi-agent debate for specification generation
 - **Key pattern**: 8 AI agents debate, then synthesize into spec
-- **Specky adopts**: Multi-persona analysis with conflict resolution
+- **Specky adopts**: Role-based challengers with conflict resolution
 
 ### DEEPSHAFT
 - **What it does**: Micro-iteration with lane-based parallel development
@@ -98,11 +98,11 @@ Specky synthesizes patterns from the best AI development tools (as of January 20
 │                              │                                   │
 │                              ▼                                   │
 │  ┌─────────────────────────────────────────────────────────┐    │
-│  │                 MULTI-AGENT DEBATE                       │    │
-│  │  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐│    │
-│  │  │  Elon  │ │ Cuban  │ │  DHH   │ │ Dieter │ │   PG   ││    │
-│  │  │  0.8   │ │  0.7   │ │  0.6   │ │  0.7   │ │  0.8   ││    │
-│  │  └────────┘ └────────┘ └────────┘ └────────┘ └────────┘│    │
+│  │               ROLE-BASED CHALLENGERS                     │    │
+│  │ ┌─────────────┐ ┌──────────┐ ┌─────────┐ ┌───────────┐  │    │
+│  │ │ Feasibility │ │  Scope   │ │   UX    │ │  Security │  │    │
+│  │ │    0.8      │ │  0.7     │ │  0.7    │ │   0.8     │  │    │
+│  │ └─────────────┘ └──────────┘ └─────────┘ └───────────┘  │    │
 │  └─────────────────────────────────────────────────────────┘    │
 │                              │                                   │
 │                              ▼                                   │
@@ -147,24 +147,14 @@ Specky: "Let me ask 5 clarifying questions to understand your needs:
 [...3 more questions...]"
 ```
 
-### Phase 2: Multi-Agent Debate
+### Phase 2: Role-Based Challenger Review
 ```
-Running 6 expert personas in parallel...
+Running 4 role-based challengers in parallel...
 
-Elon (First Principles): "Start with the simplest possible version.
-A todo app is just a list with checkboxes - don't over-engineer."
-
-Cuban (Business): "What's the monetization model? Free tier + premium
-features is the safest bet for a new product."
-
-DHH (Developer): "Use boring technology. Rails or Next.js, PostgreSQL,
-nothing fancy. Ship fast, iterate."
-
-Dieter (Design): "Less is more. Focus on the core interaction: adding
-and completing tasks. Everything else is noise."
-
-PG (Startup): "Do things that don't scale first. Talk to 10 users
-before writing any code."
+Feasibility Challenger: "Can this be built with current tech?"
+Scope Challenger: "Is this MVP or feature creep?"
+UX Challenger: "Does this remove friction?"
+Security Challenger: "What could go wrong?"
 
 Conflicts identified: Scale vs Simplicity
 Resolution: Start simple, design for scale
@@ -184,7 +174,7 @@ A web-based task management application for small teams.
 - Mobile-responsive design
 
 ## Technical Approach
-- Next.js 15 (App Router)
+- Next.js 16.1.2 (App Router)
 - Supabase (PostgreSQL + Auth)
 - Tailwind CSS + shadcn/ui
 - Vercel deployment
@@ -216,7 +206,12 @@ npm install
 cp .env.example .env.local
 # Edit .env.local with your Supabase and API keys
 
-# Run development server
+# Run repo checks
+npm run lint
+npm run lint:filenames
+npm run quality:gate
+
+# Development server
 npm run dev
 ```
 
@@ -239,7 +234,7 @@ SENTRY_DSN=your-sentry-dsn  # Error tracking
 
 ## Usage
 
-### CLI Mode (Claude Code)
+### CLI Mode (Planned)
 ```bash
 # Start specification
 /spec:new "Build a user authentication system"
@@ -254,12 +249,24 @@ SENTRY_DSN=your-sentry-dsn  # Error tracking
 /spec:synthesize
 ```
 
-### Web Mode
+### Web Mode (Planned)
 1. Navigate to `http://localhost:3000`
 2. Describe your project idea
 3. Answer clarifying questions
 4. Review multi-agent debate
 5. Export specification (Markdown, PDF, or JSON)
+
+---
+
+## Spec Pack Quality Gate
+
+Specky enforces the perfect-spec contract on every run. Run this locally to verify
+the golden spec pack fixture and validation logic:
+
+```bash
+npm run validate:specpack
+npm run quality:gate
+```
 
 ---
 

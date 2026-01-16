@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Specky Spec Pack Meta",
+  "type": "object",
+  "required": [
+    "specPackVersion",
+    "generatedAt",
+    "verificationDate",
+    "projectName",
+    "inputs",
+    "decisions"
+  ],
+  "properties": {
+    "specPackVersion": { "type": "string" },
+    "generatedAt": { "type": "string" },
+    "verificationDate": { "type": "string" },
+    "projectName": { "type": "string" },
+    "inputs": {
+      "type": "object",
+      "required": ["prompt", "clarifyingQuestions", "answers"],
+      "properties": {
+        "prompt": { "type": "string" },
+        "clarifyingQuestions": { "type": "array", "items": { "type": "string" } },
+        "answers": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "choice",
+          "rationale",
+          "verifiedAt",
+          "sources",
+          "query"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "category": { "type": "string" },
+          "choice": { "type": "string" },
+          "rationale": { "type": "string" },
+          "verifiedAt": { "type": "string" },
+          "sources": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "query": { "type": "string" }
+        }
+      }
+    }
+  }
+}

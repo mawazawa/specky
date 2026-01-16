@@ -5,7 +5,7 @@ pre-commit:
   parallel: true
   commands:
     lint-filenames:
-      glob: "*.md"
+      glob: "**/*.md"
       run: ./scripts/validate-filenames.sh {staged_files}
 
     lint-typescript:
@@ -19,3 +19,5 @@ pre-push:
   commands:
     lint-all-docs:
       run: npm run lint:filenames
+    quality-gate:
+      run: npm run quality:gate

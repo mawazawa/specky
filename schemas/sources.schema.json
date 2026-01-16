@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Specky Spec Pack Sources",
+  "type": "object",
+  "required": ["sources"],
+  "properties": {
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["decisionId", "url", "verifiedAt", "query"],
+        "properties": {
+          "decisionId": { "type": "string" },
+          "url": { "type": "string" },
+          "verifiedAt": { "type": "string" },
+          "query": { "type": "string" },
+          "title": { "type": "string" },
+          "excerpt": { "type": "string" }
+        }
+      }
+    }
+  }
+}

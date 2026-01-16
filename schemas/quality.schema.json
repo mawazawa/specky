@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Specky Spec Pack Quality",
+  "type": "object",
+  "required": ["overallScore", "sections", "staleness", "violations"],
+  "properties": {
+    "overallScore": { "type": "number" },
+    "sections": {
+      "type": "object",
+      "required": ["requirements", "design", "tasks"],
+      "properties": {
+        "requirements": { "type": "number" },
+        "design": { "type": "number" },
+        "tasks": { "type": "number" }
+      }
+    },
+    "staleness": {
+      "type": "object",
+      "required": ["fresh", "verify", "stale"],
+      "properties": {
+        "fresh": { "type": "array", "items": { "type": "string" } },
+        "verify": { "type": "array", "items": { "type": "string" } },
+        "stale": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "violations": {
+      "type": "object",
+      "required": ["missingCitations", "atomicTaskFailures"],
+      "properties": {
+        "missingCitations": { "type": "array", "items": { "type": "string" } },
+        "atomicTaskFailures": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

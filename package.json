@@ -12,6 +12,9 @@
     "start": "next start",
     "lint:filenames": "./scripts/validate-filenames.sh",
     "lint": "next lint",
+    "validate:specpack": "node scripts/validate-spec-pack.js fixtures/spec-pack-minimal",
+    "quality:gate": "node scripts/quality-gate.js fixtures/spec-pack-minimal",
+    "typecheck": "tsc --noEmit",
     "prepare": "lefthook install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,6 +30,7 @@
     "@tailwindcss/postcss": "4.1.18",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "geist": "^1.5.1",
     "lucide-react": "^0.468.0",
     "next": "16.1.2",
     "react": "19.2.3",

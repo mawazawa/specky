@@ -154,7 +154,7 @@ Apply these rules in priority order:
 - Use `React.cache()` for request deduplication
 - Minimize data passed to client components
 
-### Priority 4-8: See `docs/VERIFIED_TECH_STACK.md` for full 45-rule reference
+### Priority 4-8: TBD (rule set not yet documented)
 
 ---
 
@@ -375,11 +375,14 @@ specky/
 
 ### Development
 ```bash
-npm run dev          # Start dev server
-npm run build        # Production build
-npm run test         # Run all tests
-npm run lint         # Lint code
-npm run typecheck    # TypeScript check
+npm run dev            # Start dev server
+npm run build          # Production build
+npm run start          # Run production server
+npm run lint           # Lint code
+npm run lint:filenames # Validate docs/research/plans naming
+npm run typecheck      # TypeScript check
+npm run validate:specpack # Validate golden spec pack
+npm run quality:gate   # Enforce perfect-spec contract
 ```
 
 ### Version Verification (Run Before Any Spec)

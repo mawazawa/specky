@@ -1,0 +1,18 @@
+{
+  "sources": [
+    {
+      "decisionId": "DEC-001",
+      "url": "https://github.com/vercel/next.js/tags",
+      "verifiedAt": "2026-01-16",
+      "query": "Next.js latest stable version as of 2026-01-16",
+      "title": "Next.js tags"
+    },
+    {
+      "decisionId": "DEC-002",
+      "url": "https://github.com/tailwindlabs/tailwindcss/releases",
+      "verifiedAt": "2026-01-16",
+      "query": "Tailwind CSS latest stable version as of 2026-01-16",
+      "title": "Tailwind CSS releases"
+    }
+  ]
+}

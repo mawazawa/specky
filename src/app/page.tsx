@@ -1,15 +1,86 @@
+import { GlassButton } from "@/components/ui/glass-button";
+import { SpecCard, SpecCardContent, SpecCardDescription, SpecCardHeader, SpecCardTitle } from "@/components/ui/spec-card";
+import { ArrowRight, Cpu, Sparkles, Terminal } from "lucide-react";
+
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8">
-      <h1 className="text-4xl font-bold tracking-tight">Specky</h1>
-      <p className="text-muted-foreground text-lg text-center max-w-xl">
-        The Spec is the Moat.
-      </p>
-      <div className="flex gap-4">
-        <button className="bg-primary text-primary-foreground px-4 py-2 rounded-md hover:opacity-90 transition-opacity">
-          New Spec
-        </button>
+    <div className="flex flex-col min-h-screen relative overflow-hidden">
+      {/* Background Gradient Mesh */}
+      <div className="absolute top-0 left-0 w-full h-full -z-10 opacity-30 pointer-events-none">
+        <div className="absolute top-[-20%] left-[20%] w-[500px] h-[500px] rounded-full bg-primary blur-[128px]" />
+        <div className="absolute bottom-[-10%] right-[20%] w-[400px] h-[400px] rounded-full bg-nectar blur-[128px] opacity-60" />
       </div>
+
+      <main className="flex-1 flex flex-col items-center justify-center p-8 gap-12 max-w-5xl mx-auto w-full">
+        {/* Hero Section */}
+        <div className="flex flex-col items-center gap-6 text-center animate-in fade-in zoom-in duration-700">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-primary-foreground/80 backdrop-blur-sm">
+            <Sparkles className="w-3 h-3 text-nectar" />
+            <span>v0.1.0 • Verified Jan 15, 2026</span>
+          </div>
+          
+          <h1 className="text-display bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent max-w-3xl">
+            The Spec is the Moat.
+          </h1>
+          
+          <p className="text-xl text-muted-foreground max-w-xl leading-relaxed">
+            Generate ultra-granular implementation plans so powerful that any LLM can single-shot execute them.
+          </p>
+
+          <div className="flex gap-4 mt-4">
+            <GlassButton size="lg" className="gap-2 group">
+              Start New Spec
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </GlassButton>
+            <GlassButton size="lg" variant="ghost" className="text-muted-foreground hover:text-white">
+              View Documentation
+            </GlassButton>
+          </div>
+        </div>
+
+        {/* Feature Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-12 animate-in slide-in-from-bottom-8 duration-700 delay-200 fill-mode-backwards">
+          <SpecCard>
+            <SpecCardHeader>
+              <Terminal className="w-8 h-8 text-primary mb-2" />
+              <SpecCardTitle>Temporal Grounding</SpecCardTitle>
+            </SpecCardHeader>
+            <SpecCardContent>
+              <SpecCardDescription>
+                Every technology decision is verified against today's date (2026-01-16) to prevent hallucinations.
+              </SpecCardDescription>
+            </SpecCardContent>
+          </SpecCard>
+
+          <SpecCard>
+            <SpecCardHeader>
+              <Cpu className="w-8 h-8 text-nectar mb-2" />
+              <SpecCardTitle>Atomic Tasks</SpecCardTitle>
+            </SpecCardHeader>
+            <SpecCardContent>
+              <SpecCardDescription>
+                Specs are decomposed into tasks touching ≤3 files, perfect for AI context windows.
+              </SpecCardDescription>
+            </SpecCardContent>
+          </SpecCard>
+
+          <SpecCard>
+            <SpecCardHeader>
+              <Sparkles className="w-8 h-8 text-primary mb-2" />
+              <SpecCardTitle>MCP Optimized</SpecCardTitle>
+            </SpecCardHeader>
+            <SpecCardContent>
+              <SpecCardDescription>
+                Tech stack choices are weighted by Model Context Protocol support for autonomous execution.
+              </SpecCardDescription>
+            </SpecCardContent>
+          </SpecCard>
+        </div>
+      </main>
+      
+      <footer className="w-full p-8 text-center text-sm text-muted-foreground/40">
+        <p>Specky "Hummingbird" • Built with Next.js 16.1.2 & Tailwind 4.1.18</p>
+      </footer>
     </div>
   );
 }

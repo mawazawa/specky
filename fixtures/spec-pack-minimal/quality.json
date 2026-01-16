@@ -1,0 +1,17 @@
+{
+  "overallScore": 90,
+  "sections": {
+    "requirements": 88,
+    "design": 85,
+    "tasks": 95
+  },
+  "staleness": {
+    "fresh": ["DEC-001", "DEC-002"],
+    "verify": [],
+    "stale": []
+  },
+  "violations": {
+    "missingCitations": [],
+    "atomicTaskFailures": []
+  }
+}
