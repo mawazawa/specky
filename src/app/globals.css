@@ -4,41 +4,42 @@
   --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: var(--font-geist-mono), "JetBrains Mono", monospace;
   
-  /* Specky "Iris" Palette - Dark Mode Default */
-  --color-background: hsl(240 10% 3.9%); /* Deep Obsidian */
+  /* Specky "Cobalt Nature" Palette - Dark Mode Default */
+  --color-background: hsl(150 40% 2%); /* Deepest Matte Green */
   --color-foreground: hsl(0 0% 98%); /* White High Contrast */
   
-  --color-card: hsl(240 6% 10%); /* Graphite */
+  --color-card: hsl(150 30% 4%); /* Deep Green Surface */
   --color-card-foreground: hsl(0 0% 98%);
   
-  --color-popover: hsl(240 6% 10%);
+  --color-popover: hsl(150 30% 4%);
   --color-popover-foreground: hsl(0 0% 98%);
   
-  /* Iris Gradient Base */
-  --color-primary: hsl(266 80% 60%); 
+  /* Cobalt Blue - Primary Action */
+  --color-primary: hsl(210 100% 50%); /* Vibrant Cobalt */
   --color-primary-foreground: hsl(0 0% 98%);
   
-  --color-secondary: hsl(240 6% 15%);
+  --color-secondary: hsl(150 20% 10%); /* Muted Green Surface */
   --color-secondary-foreground: hsl(0 0% 98%);
   
-  --color-muted: hsl(240 6% 15%);
-  --color-muted-foreground: hsl(240 5% 65%); /* Muted Steel */
+  --color-muted: hsl(150 20% 10%);
+  --color-muted-foreground: hsl(150 10% 70%); /* Muted Nature Grey */
   
-  --color-accent: hsl(266 80% 60%);
+  /* Nature Accent - Saturated Green */
+  --color-accent: hsl(140 80% 40%); /* Vibrant Leaf Green */
   --color-accent-foreground: hsl(0 0% 98%);
   
   --color-destructive: hsl(0 62.8% 30.6%);
   --color-destructive-foreground: hsl(0 0% 98%);
   
-  --color-border: hsl(240 6% 15%);
-  --color-input: hsl(240 6% 15%);
-  --color-ring: hsl(266 80% 60%);
+  --color-border: hsl(150 20% 10%);
+  --color-input: hsl(150 20% 10%);
+  --color-ring: hsl(210 100% 50%); /* Cobalt Ring */
   
-  /* Nectar (Warm Amber Accent) */
-  --color-nectar: hsl(35 90% 60%);
+  /* Secondary Accent - Faded Pastel Blue */
+  --color-sky: hsl(200 60% 70%);
   
   --radius-sm: 0.5rem;
-  --radius-md: 0.75rem; /* Softer, Apple-like */
+  --radius-md: 0.75rem;
   --radius-lg: 1rem;
   
   /* Motion Primitives */
@@ -50,14 +51,14 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary-foreground;
+    @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary-foreground;
   }
 }
 
 /* Utilities for "Glass" and "Glow" */
 @layer utilities {
   .glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10;
+    @apply bg-white/5 backdrop-blur-md border border-white/5;
   }
   .glass-hover {
     @apply hover:bg-white/10 transition-colors duration-300;
