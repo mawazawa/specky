@@ -251,12 +251,12 @@ specky validate ./spec-pack --strict
 specky verify ./spec-pack
 ```
 
-### Web Mode (Planned)
+### Web Mode
 1. Navigate to `http://localhost:3000`
 2. Describe your project idea
 3. Answer clarifying questions
-4. Review multi-agent debate
-5. Export specification (Markdown, PDF, or JSON)
+4. Generate and review the spec pack
+5. Export individual files (Markdown + JSON)
 
 ---
 

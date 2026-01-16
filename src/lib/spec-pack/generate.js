@@ -1,4 +1,5 @@
-import { DEFAULT_DECISIONS, QUESTIONS } from "./constants.js";
+import { DEFAULT_DECISIONS } from "./constants.js";
+import { QUESTIONS } from "./questions.js";
 import { buildSpecPack } from "./build.js";
 import { verifyDecisions } from "../verify/exa.js";
 
