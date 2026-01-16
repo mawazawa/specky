@@ -6,6 +6,18 @@
 
 ---
 
+## Story Standards (INVEST)
+
+All stories must be INVEST-compliant:
+- Independent: no hidden coupling
+- Negotiable: solution can evolve
+- Valuable: user-visible outcome
+- Estimable: clear enough to size
+- Small: fits atomic task boundaries
+- Testable: has acceptance criteria
+
+**Estimation**: Fibonacci scale (1, 2, 3, 5, 8, 13, 21). No sprint cap.
+
 ## Epics Overview
 
 | Epic | Outcome | Priority |
