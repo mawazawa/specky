@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Ultra-granular specification generation so powerful that any LLM can single-shot execute it",
   "type": "module",
+  "bin": {
+    "specky": "bin/specky.js"
+  },
   "directories": {
     "doc": "docs"
   },
@@ -16,7 +19,8 @@
     "quality:gate": "node scripts/quality-gate.js fixtures/spec-pack-minimal",
     "typecheck": "tsc --noEmit",
     "prepare": "lefthook install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "specky": "node bin/specky.js"
   },
   "keywords": [
     "specification",
