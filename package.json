@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "description": "Ultra-granular specification generation so powerful that any LLM can single-shot execute it",
   "type": "module",
-  "main": "index.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
     "lint:filenames": "./scripts/validate-filenames.sh",
-    "lint": "eslint . --ignore-pattern '**/*.md'",
+    "lint": "next lint",
     "prepare": "lefthook install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,9 +23,27 @@
   ],
   "author": "",
   "license": "MIT",
+  "dependencies": {
+    "@tailwindcss/postcss": "4.1.18",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
+    "next": "16.1.2",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss": "4.1.18",
+    "tailwindcss-animate": "^1.0.7"
+  },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^16.1.2",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "eslint": "^9.39.2",
-    "eslint-plugin-validate-filename": "^1.2.0",
-    "lefthook": "^2.0.15"
+    "lefthook": "^2.0.15",
+    "postcss": "^8",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.53.0"
   }
 }
