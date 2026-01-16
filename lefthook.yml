@@ -13,6 +13,9 @@ pre-commit:
       run: npx eslint {staged_files} --no-error-on-unmatched-pattern
       stage_fixed: true
 
+    verify-stack:
+      run: ./scripts/verify-stack.sh
+
 # Optional: run on push for extra safety
 pre-push:
   parallel: true
