@@ -95,7 +95,9 @@ smoke: "npm test -- --grep @ai"
 
 ---
 
-## Commands
+## Commands (Planned)
+
+These commands document the intended interface. They are not implemented yet.
 
 ```bash
 # Check for lane overlap violations

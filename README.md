@@ -10,7 +10,11 @@
 
 ## What is Specky?
 
-Specky generates specifications so powerful that **any LLM can single-shot execute them**.
+Specky is building a spec-first generator that produces specifications so powerful that
+**any LLM can single-shot execute them**.
+
+**Current state**: the repo ships the spec-pack contract, quality gate, and golden fixtures.
+The runtime generator and CLI are next.
 
 - Claude 4.5 Haiku? Single-shot.
 - DeepSeek V3.2? Zero intervention.
@@ -270,7 +274,7 @@ npm run quality:gate
 
 ---
 
-## Tech Stack (Verified Jan 15, 2026)
+## Default Stack for Generated Specs (Verified Jan 15, 2026)
 
 | Category | Technology | Version | Verified Source |
 |----------|------------|---------|-----------------|
@@ -279,7 +283,7 @@ npm run quality:gate
 | Language | TypeScript | **5.9** | typescriptlang.org |
 | Styling | Tailwind CSS | **4.1.18** | GitHub releases (Dec 11, 2025) |
 | Database | Supabase | Latest | PostgreSQL + RLS |
-| Testing | Playwright | Latest | E2E tests |
+| Testing | Playwright | Recommended | E2E tests (planned in repo) |
 
 ### MCP-Optimized Defaults
 

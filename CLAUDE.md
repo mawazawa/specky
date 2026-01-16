@@ -91,7 +91,7 @@ Skills load in 3 stages:
 - **React**: 19.2.3 (use() hook, compiler)
 - **TypeScript**: 5.9 (strict mode) - TS 6/7 still in dev
 - **Styling**: Tailwind CSS 4.1.18 + shadcn/ui - NOT 4.0
-- **State**: React hooks + React Query
+- **State**: React hooks (add query lib per spec)
 
 ### Backend (MCP-Aware Defaults)
 - **Database**: Supabase (PostgreSQL + RLS) - Best MCP, default choice
@@ -125,8 +125,8 @@ Skills load in 3 stages:
 **Verified as of**: January 15, 2026
 
 ### Development
-- **Testing**: Playwright E2E + Vitest
-- **Build**: Vite 7+ with code splitting
+- **Testing**: Planned (recommend Playwright + Vitest for generated specs)
+- **Build**: Next.js (App Router)
 - **Deployment**: Vercel
 
 ---
@@ -399,34 +399,23 @@ npm run lint:filenames
 
 ---
 
-## File Structure
+## File Structure (Current)
 
 ```
 specky/
 ├── src/
 │   ├── app/                    # Next.js App Router
-│   │   ├── (dashboard)/        # Protected routes
-│   │   ├── api/                # API routes
-│   │   └── auth/               # Auth flows
-│   ├── components/
-│   │   ├── ui/                 # shadcn/ui components
-│   │   ├── chat/               # Chat interface
-│   │   ├── spec/               # Spec generation UI
-│   │   └── questions/          # Clarifying questions
-│   ├── lib/
-│   │   ├── ai/                 # AI integrations
-│   │   ├── agents/             # Multi-agent system
-│   │   └── utils/              # Utilities
+│   ├── components/             # UI primitives
+│   ├── lib/                    # Utilities
 │   └── hooks/                  # Custom React hooks
-├── supabase/
-│   ├── functions/              # Edge Functions
-│   └── migrations/             # Database schema
-├── tests/                      # Playwright E2E
-├── .claude/
-│   ├── skills/                 # Custom skills
-│   ├── commands/               # Slash commands
-│   └── hooks/                  # Automation hooks
-└── docs/                       # Documentation
+├── .claude/                    # Claude hooks (local tooling)
+├── docs/                       # Documentation
+├── fixtures/                   # Golden spec packs
+├── plans/                      # Roadmaps and plans
+├── research/                   # Verified research
+├── schemas/                    # Spec pack schemas
+├── scripts/                    # Validation and quality gates
+└── templates/                  # Spec output templates
 ```
 
 ---

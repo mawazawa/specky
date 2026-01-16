@@ -1,7 +1,7 @@
 # Specky Naming Conventions
 
 > **Effective**: January 15, 2026
-> **Enforced By**: ESLint + Pre-commit hooks
+> **Enforced By**: `scripts/validate-filenames.sh` + Lefthook pre-commit hooks
 
 ---
 
@@ -145,27 +145,19 @@ For minor fixes (typos, formatting), keep the original date.
 
 ## Enforcement
 
-### ESLint Rules
+### Filename Validation Script
 
-```javascript
-// eslint.config.js
-'check-file/filename-naming-convention': [
-  'error',
-  {
-    'docs/**/*.md': 'KEBAB_CASE',
-    'research/**/*.md': 'KEBAB_CASE',
-    'plans/**/*.md': 'KEBAB_CASE',
-  },
-],
-```
+`scripts/validate-filenames.sh` enforces the exact `YYYY-MM-DD_` + kebab-case pattern
+for all markdown files in `docs/`, `research/`, and `plans/`.
 
-### Pre-commit Hook
+### Lefthook Pre-commit
 
-Commits will be rejected if files in `docs/`, `research/`, or `plans/` don't follow the convention.
+Lefthook runs the validation script on staged markdown files before commit.
+Commits are rejected if any file violates the convention.
 
-### Claude Code Hook
+### CI Gate (Optional)
 
-When Claude creates files, the PreToolUse hook validates naming before write.
+CI can run `npm run lint:filenames` as the final enforcement layer.
 
 ---
 

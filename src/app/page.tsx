@@ -47,7 +47,7 @@ export default function Home() {
             </SpecCardHeader>
             <SpecCardContent>
               <SpecCardDescription>
-                Every technology decision is verified against today's date (2026-01-16) to prevent hallucinations.
+                Every technology decision is verified against today's date to prevent hallucinations.
               </SpecCardDescription>
             </SpecCardContent>
           </SpecCard>
