@@ -1,0 +1,29 @@
+{
+  "name": "specky",
+  "version": "0.1.0",
+  "description": "Ultra-granular specification generation so powerful that any LLM can single-shot execute it",
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "lint:filenames": "./scripts/validate-filenames.sh",
+    "lint": "eslint . --ignore-pattern '**/*.md'",
+    "prepare": "lefthook install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "specification",
+    "ai",
+    "llm",
+    "code-generation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^9.39.2",
+    "eslint-plugin-validate-filename": "^1.2.0",
+    "lefthook": "^2.0.15"
+  }
+}

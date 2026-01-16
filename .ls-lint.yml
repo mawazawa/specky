@@ -1,0 +1,62 @@
+# ls-lint Configuration
+# Enforces consistent file naming conventions across the project
+# Run: npx ls-lint
+# See: https://github.com/loeffel-io/ls-lint
+
+# Use kebab-case for most files (lowercase with hyphens)
+.kebab:
+  - '*.ts'
+  - '*.tsx'
+  - '*.js'
+  - '*.jsx'
+  - '*.css'
+  - '*.scss'
+  - '*.json'
+
+# Research, context, plans, ADRs must use YYYY-MM-DD prefix
+.research-naming:
+  - 'research/**/*'
+  - 'context/**/*'
+  - 'plans/**/*'
+  - 'adrs/**/*'
+  # Pattern: YYYY-MM-DD_description-type_version.ext
+  # Example: 2026-01-15_nextjs-research_v1.md
+  match: '^\d{4}-\d{2}-\d{2}_[a-z0-9-]+(?:_[a-z]+)?(?:_v\d+(?:-\d+)?)?\.md$'
+
+# Docs can have simple kebab-case names
+.docs:
+  - 'docs/**/*'
+
+# Components follow pattern: name.component.ts
+# Example: user-profile.component.ts
+.components:
+  - 'src/components/**/*'
+  match: '^[a-z0-9-]+\.(component|directive|pipe|module)\.(ts|tsx)$'
+
+# Services follow pattern: name.service.ts
+# Example: user-service.service.ts
+.services:
+  - 'src/services/**/*'
+  match: '^[a-z0-9-]+\.service\.(ts|tsx)$'
+
+# Tests follow pattern: name.spec.ts or name.test.ts
+.tests:
+  - '**/*.spec.ts'
+  - '**/*.spec.tsx'
+  - '**/*.test.ts'
+  - '**/*.test.tsx'
+
+# Allow index files (rare but sometimes needed)
+# Explicitly list exceptions if needed
+# .exceptions:
+#   - 'index.ts'
+#   - 'index.tsx'
+
+# Ignore directories that shouldn't be checked
+ignore:
+  - 'node_modules'
+  - 'dist'
+  - 'build'
+  - '.next'
+  - '.git'
+  - '.claude'

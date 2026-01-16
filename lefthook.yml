@@ -1,0 +1,21 @@
+# Lefthook configuration for Specky
+# Enforces YYYY-MM-DD_ filename convention on pre-commit
+
+pre-commit:
+  parallel: true
+  commands:
+    lint-filenames:
+      glob: "*.md"
+      run: ./scripts/validate-filenames.sh {staged_files}
+
+    lint-typescript:
+      glob: "*.{ts,tsx}"
+      run: npx eslint {staged_files} --no-error-on-unmatched-pattern
+      stage_fixed: true
+
+# Optional: run on push for extra safety
+pre-push:
+  parallel: true
+  commands:
+    lint-all-docs:
+      run: npm run lint:filenames
