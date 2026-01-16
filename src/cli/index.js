@@ -5,7 +5,7 @@ import { runCommand } from "./commands.js";
 export const run = async (argv) => {
   const { command, flags, positionals } = parseArgs(argv);
 
-  if (!command || command === "help" || flags.h || flags.help) {
+  if (!command || command === "help" || command.startsWith("-") || flags.h || flags.help) {
     console.log(usage());
     return 0;
   }

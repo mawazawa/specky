@@ -13,8 +13,8 @@
 Specky is building a spec-first generator that produces specifications so powerful that
 **any LLM can single-shot execute them**.
 
-**Current state**: the repo ships the spec-pack contract, quality gate, and golden fixtures.
-The runtime generator and CLI are next.
+**Current state**: the repo ships the spec-pack contract, quality gate, golden fixtures,
+and a CLI that generates validated spec packs with Exa-backed verification.
 
 - Claude 4.5 Haiku? Single-shot.
 - DeepSeek V3.2? Zero intervention.
@@ -229,6 +229,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 # AI Providers
 ANTHROPIC_API_KEY=your-anthropic-key
 GROQ_API_KEY=your-groq-key  # For fast inference
+EXA_API_KEY=your-exa-key    # Verification search
 
 # Optional
 SENTRY_DSN=your-sentry-dsn  # Error tracking
@@ -238,19 +239,16 @@ SENTRY_DSN=your-sentry-dsn  # Error tracking
 
 ## Usage
 
-### CLI Mode (Planned)
+### CLI Mode
 ```bash
-# Start specification
-/spec:new "Build a user authentication system"
+# Generate a spec pack (requires EXA_API_KEY)
+specky new "Build a user authentication system"
 
-# Get clarifying questions
-/spec:clarify
+# Validate an existing spec pack
+specky validate ./spec-pack --strict
 
-# Run multi-agent debate
-/spec:debate
-
-# Generate final specification
-/spec:synthesize
+# Re-verify sources for a spec pack (uses cache if --offline)
+specky verify ./spec-pack
 ```
 
 ### Web Mode (Planned)

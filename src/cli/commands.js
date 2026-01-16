@@ -50,7 +50,7 @@ export const runCommand = async (command, positionals, flags) => {
 
       const outputPath = await writeSpecPack(outputDir, specPack);
       console.log(`Spec pack written to ${outputPath}`);
-      return 0;
+      return runValidator(outputPath, true);
     }
     case "validate": {
       const specPath = positionals[0];
@@ -82,7 +82,7 @@ export const runCommand = async (command, positionals, flags) => {
 
       await writeSpecPack(resolved, specPack);
       console.log(`Spec pack re-verified at ${resolved}`);
-      return 0;
+      return runValidator(resolved, true);
     }
     default:
       return null;

@@ -434,12 +434,11 @@ npm run validate:specpack # Validate golden spec pack
 npm run quality:gate   # Enforce perfect-spec contract
 ```
 
-### Spec Generation (planned)
+### Spec Generation (CLI)
 ```bash
-/spec:new            # Start new specification
-/spec:clarify        # Ask clarifying questions
-/spec:debate         # Run multi-agent debate
-/spec:synthesize     # Generate final spec
+specky new "Build a user authentication system"
+specky validate ./spec-pack --strict
+specky verify ./spec-pack
 ```
 
 ---
