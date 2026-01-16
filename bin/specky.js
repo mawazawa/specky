@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import { run } from "../src/cli/index.js";
 
-run(process.argv.slice(2)).catch((error) => {
-  console.error(error?.message ?? error);
-  process.exit(1);
-});
+// Minimal wrapper to bootstrap the CLI from TypeScript source or built output
+// For now, we assume tsx is available for development, or we point to compiled JS in prod.
+
+import { run } from "../src/cli/index.ts";
+run().catch(console.error);
