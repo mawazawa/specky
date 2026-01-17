@@ -1,0 +1,571 @@
+# Specky Planning Status
+# Machine-parseable single source of truth
+# Schema: planning/schemas/status-schema.ts
+#
+# This file is CANONICAL. All other status indicators derive from this.
+# Updated by: Multi-agent pipeline during spec generation
+#
+# VALIDATION: specky validate:status planning/status.yaml
+
+version: "1.0.0"
+updated_at: "2026-01-17T12:39:00Z"
+updated_by: "claude-opus-4-5"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# PROJECT OVERVIEW
+# ═══════════════════════════════════════════════════════════════════════════
+
+project:
+  name: "Specky"
+  codename: "Hummingbird"
+  description: "AI Specification Generator - The Spec is the Moat"
+  phase: "implementation"
+  total_stories: 20
+  completed_stories: 1
+  overall_progress: 5.0
+  confidence_score: 100  # Must be 100 to ship any spec pack
+  target_launch: "2026-02-15"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# SPRINTS
+# ═══════════════════════════════════════════════════════════════════════════
+
+sprints:
+  sprint-1:
+    name: "Core Pipeline"
+    theme: "Multi-agent spec generation with 100% completeness"
+    status: "in_progress"
+    progress: 10.0
+    total_stories: 6
+    completed_stories: 1
+    started_at: "2026-01-17T00:00:00Z"
+    target_end: "2026-01-24T00:00:00Z"
+    stories:
+      - "S1-001"
+      - "S1-002"
+      - "S1-003"
+      - "S1-004"
+      - "S1-005"
+      - "S1-006"
+
+  sprint-2:
+    name: "Validation & Quality"
+    theme: "Zero tolerance for incomplete specs"
+    status: "pending"
+    progress: 0
+    total_stories: 5
+    completed_stories: 0
+    blocked_by: ["sprint-1"]
+    stories:
+      - "S2-001"
+      - "S2-002"
+      - "S2-003"
+      - "S2-004"
+      - "S2-005"
+
+  sprint-3:
+    name: "UI & Polish"
+    theme: "Beautiful interface for spec generation"
+    status: "pending"
+    progress: 0
+    total_stories: 5
+    completed_stories: 0
+    blocked_by: ["sprint-2"]
+    stories:
+      - "S3-001"
+      - "S3-002"
+      - "S3-003"
+      - "S3-004"
+      - "S3-005"
+
+  sprint-4:
+    name: "Export & Integration"
+    theme: "Spec packs for any LLM"
+    status: "pending"
+    progress: 0
+    total_stories: 4
+    completed_stories: 0
+    blocked_by: ["sprint-3"]
+    stories:
+      - "S4-001"
+      - "S4-002"
+      - "S4-003"
+      - "S4-004"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# STORIES - SPRINT 1 (CORE PIPELINE)
+# ═══════════════════════════════════════════════════════════════════════════
+
+stories:
+  # ─────────────────────────────────────────────────────────────────────────
+  # SPRINT 1: CORE PIPELINE
+  # ─────────────────────────────────────────────────────────────────────────
+
+  S1-001:
+    title: "CLI Skeleton with Commander"
+    sprint: "sprint-1"
+    domain: "cli"
+    status: "completed"
+    agent_type: "senior-fullstack"
+    estimated_effort: "S"
+    actual_effort: "S"
+    completed_at: "2026-01-16T00:00:00Z"
+    completed_by: "claude-opus-4-5"
+    file_path: "planning/completed/S1-001-cli-skeleton.md"
+    task_ids: 5
+    blocked_by: []
+    blocks: ["S1-002"]
+    files_affected:
+      - path: "src/cli/index.ts"
+        action: "CREATE"
+      - path: "src/cli/commands/new.ts"
+        action: "CREATE"
+      - path: "src/cli/commands/validate.ts"
+        action: "CREATE"
+    acceptance_criteria:
+      - criterion: "specky --help shows usage"
+        verification: "npx tsx src/cli/index.ts --help"
+      - criterion: "specky new <prompt> accepts input"
+        verification: "npx tsx src/cli/index.ts new 'test'"
+    notes: "Foundation for all CLI commands"
+
+  S1-002:
+    title: "Discovery Agent - Questioner"
+    sprint: "sprint-1"
+    domain: "pipeline"
+    status: "ready"
+    agent_type: "senior-fullstack"
+    estimated_effort: "L"
+    file_path: "planning/stories/S1-002-discovery-agent.md"
+    task_ids: 8
+    blocked_by: ["S1-001"]
+    blocks: ["S1-003"]
+    files_to_create:
+      - "src/lib/spec-engine/agents/discovery.ts"
+      - "src/lib/spec-engine/prompts/questioner.ts"
+    files_to_modify:
+      - path: "src/cli/commands/new.ts"
+        lines: "45-120"
+    acceptance_criteria:
+      - criterion: "Generates 5 clarifying questions from user prompt"
+        verification: "pnpm test src/lib/spec-engine/agents/discovery.test.ts"
+      - criterion: "Each question has recommended answer"
+        verification: "pnpm test src/lib/spec-engine/agents/discovery.test.ts"
+      - criterion: "Runs Exa verification on all tech mentioned"
+        verification: "pnpm test src/lib/spec-engine/agents/discovery.test.ts"
+    notes: "Phase 1 of the 6-phase pipeline"
+
+  S1-003:
+    title: "Challenge Agent - Adversarial Reviewer"
+    sprint: "sprint-1"
+    domain: "pipeline"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "L"
+    file_path: "planning/stories/S1-003-challenge-agent.md"
+    task_ids: 8
+    blocked_by: ["S1-002"]
+    blocks: ["S1-004"]
+    files_to_create:
+      - "src/lib/spec-engine/agents/challenger.ts"
+      - "src/lib/spec-engine/prompts/challenger.ts"
+    acceptance_criteria:
+      - criterion: "Challenges feasibility of requirements"
+        verification: "pnpm test src/lib/spec-engine/agents/challenger.test.ts"
+      - criterion: "Challenges scope for MVP fit"
+        verification: "pnpm test src/lib/spec-engine/agents/challenger.test.ts"
+      - criterion: "Outputs debate-trail.json with alternatives"
+        verification: "pnpm test src/lib/spec-engine/agents/challenger.test.ts"
+    notes: "Phase 2 - Adversarial review prevents single-author blindspots"
+
+  S1-004:
+    title: "Design Agent - Architect"
+    sprint: "sprint-1"
+    domain: "pipeline"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "XL"
+    file_path: "planning/stories/S1-004-design-agent.md"
+    task_ids: 12
+    blocked_by: ["S1-003"]
+    blocks: ["S1-005"]
+    files_to_create:
+      - "src/lib/spec-engine/agents/architect.ts"
+      - "src/lib/spec-engine/prompts/architect.ts"
+      - "src/lib/spec-engine/schema-generator.ts"
+    acceptance_criteria:
+      - criterion: "Selects tech stack with Exa verification"
+        verification: "pnpm test src/lib/spec-engine/agents/architect.test.ts"
+      - criterion: "Pre-writes TypeScript schemas (complete, no stubs)"
+        verification: "pnpm typecheck"
+      - criterion: "Documents alternatives considered"
+        verification: "jq '.decisions | length > 0' debate-trail.json"
+    notes: "Phase 3 - Architecture decisions with complete schemas"
+
+  S1-005:
+    title: "Decomposition Agent - Task Splitter"
+    sprint: "sprint-1"
+    domain: "pipeline"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "XL"
+    file_path: "planning/stories/S1-005-decomposition-agent.md"
+    task_ids: 15
+    blocked_by: ["S1-004"]
+    blocks: ["S1-006"]
+    files_to_create:
+      - "src/lib/spec-engine/agents/decomposer.ts"
+      - "src/lib/spec-engine/prompts/decomposer.ts"
+      - "src/lib/spec-engine/story-generator.ts"
+    acceptance_criteria:
+      - criterion: "Breaks into atomic tasks (≤3 files each)"
+        verification: "specky validate:atomic ./output"
+      - criterion: "Adds step IDs to all tasks"
+        verification: "grep -c 'step:' output/stories/*.md"
+      - criterion: "Writes COMPLETE code (no ellipsis)"
+        verification: "! grep -r '\\.\\.\\.' output/stories/*.md"
+      - criterion: "Builds dependency DAG"
+        verification: "specky validate:dag ./output"
+    notes: "Phase 4 - The most critical phase for 100% completeness"
+
+  S1-006:
+    title: "Pipeline Orchestrator"
+    sprint: "sprint-1"
+    domain: "pipeline"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "L"
+    file_path: "planning/stories/S1-006-pipeline-orchestrator.md"
+    task_ids: 10
+    blocked_by: ["S1-005"]
+    blocks: ["S2-001"]
+    files_to_create:
+      - "src/lib/spec-engine/orchestrator.ts"
+      - "src/lib/spec-engine/iteration-controller.ts"
+    acceptance_criteria:
+      - criterion: "Runs all 6 phases in sequence"
+        verification: "pnpm test src/lib/spec-engine/orchestrator.test.ts"
+      - criterion: "Loops back if quality threshold not met"
+        verification: "pnpm test src/lib/spec-engine/iteration-controller.test.ts"
+      - criterion: "Outputs complete spec-pack/"
+        verification: "specky validate ./output --strict"
+    notes: "Phase 6 - Ties all agents together with iteration loops"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # SPRINT 2: VALIDATION & QUALITY
+  # ─────────────────────────────────────────────────────────────────────────
+
+  S2-001:
+    title: "Validation Agent - Quality Auditor"
+    sprint: "sprint-2"
+    domain: "pipeline"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "L"
+    file_path: "planning/stories/S2-001-validation-agent.md"
+    task_ids: 10
+    blocked_by: ["S1-006"]
+    blocks: ["S2-002"]
+    acceptance_criteria:
+      - criterion: "Rejects specs with incomplete code"
+        verification: "pnpm test src/lib/spec-engine/agents/validator.test.ts"
+      - criterion: "Rejects specs missing citations"
+        verification: "pnpm test src/lib/spec-engine/agents/validator.test.ts"
+      - criterion: "Computes confidence score"
+        verification: "pnpm test src/lib/spec-engine/agents/validator.test.ts"
+    notes: "Phase 5 - The gatekeeper for 100% completeness"
+
+  S2-002:
+    title: "Atomic Task Validator"
+    sprint: "sprint-2"
+    domain: "validation"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "M"
+    file_path: "planning/stories/S2-002-atomic-validator.md"
+    task_ids: 6
+    blocked_by: ["S2-001"]
+    blocks: []
+    acceptance_criteria:
+      - criterion: "Fails if any task >3 files"
+        verification: "pnpm test src/lib/validators/atomic.test.ts"
+      - criterion: "Reports offending task IDs"
+        verification: "pnpm test src/lib/validators/atomic.test.ts"
+
+  S2-003:
+    title: "Code Completeness Checker"
+    sprint: "sprint-2"
+    domain: "validation"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "M"
+    file_path: "planning/stories/S2-003-completeness-checker.md"
+    task_ids: 6
+    blocked_by: ["S2-001"]
+    blocks: []
+    acceptance_criteria:
+      - criterion: "Detects '...' in code blocks"
+        verification: "pnpm test src/lib/validators/completeness.test.ts"
+      - criterion: "Detects TODO/FIXME comments"
+        verification: "pnpm test src/lib/validators/completeness.test.ts"
+      - criterion: "Detects 'similar to above' phrases"
+        verification: "pnpm test src/lib/validators/completeness.test.ts"
+
+  S2-004:
+    title: "Citation Linter"
+    sprint: "sprint-2"
+    domain: "validation"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "M"
+    file_path: "planning/stories/S2-004-citation-linter.md"
+    task_ids: 6
+    blocked_by: ["S2-001"]
+    blocks: []
+    acceptance_criteria:
+      - criterion: "Fails if decision lacks URL"
+        verification: "pnpm test src/lib/validators/citations.test.ts"
+      - criterion: "Fails if decision lacks verification date"
+        verification: "pnpm test src/lib/validators/citations.test.ts"
+
+  S2-005:
+    title: "Schema Compiler Check"
+    sprint: "sprint-2"
+    domain: "validation"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "S"
+    file_path: "planning/stories/S2-005-schema-compiler.md"
+    task_ids: 4
+    blocked_by: ["S2-001"]
+    blocks: []
+    acceptance_criteria:
+      - criterion: "All .ts schemas compile with tsc --strict"
+        verification: "pnpm test src/lib/validators/schema-compiler.test.ts"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # SPRINT 3: UI & POLISH
+  # ─────────────────────────────────────────────────────────────────────────
+
+  S3-001:
+    title: "Spec Generator UI Component"
+    sprint: "sprint-3"
+    domain: "frontend"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "L"
+    file_path: "planning/stories/S3-001-spec-generator-ui.md"
+    task_ids: 10
+    blocked_by: ["sprint-2"]
+    blocks: ["S3-002"]
+    acceptance_criteria:
+      - criterion: "Input field accepts project description"
+        verification: "pnpm test:e2e spec-generator.spec.ts"
+      - criterion: "Shows progress through 6 phases"
+        verification: "pnpm test:e2e spec-generator.spec.ts"
+
+  S3-002:
+    title: "Real-time Generation Streaming"
+    sprint: "sprint-3"
+    domain: "frontend"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "M"
+    file_path: "planning/stories/S3-002-streaming-ui.md"
+    task_ids: 8
+    blocked_by: ["S3-001"]
+    blocks: []
+    acceptance_criteria:
+      - criterion: "Streams output as generated"
+        verification: "pnpm test:e2e streaming.spec.ts"
+
+  S3-003:
+    title: "Question/Answer Flow UI"
+    sprint: "sprint-3"
+    domain: "frontend"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "M"
+    file_path: "planning/stories/S3-003-qa-flow-ui.md"
+    task_ids: 8
+    blocked_by: ["S3-001"]
+    blocks: []
+    acceptance_criteria:
+      - criterion: "Displays clarifying questions"
+        verification: "pnpm test:e2e qa-flow.spec.ts"
+      - criterion: "Accepts user answers"
+        verification: "pnpm test:e2e qa-flow.spec.ts"
+
+  S3-004:
+    title: "Spec Pack Preview"
+    sprint: "sprint-3"
+    domain: "frontend"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "M"
+    file_path: "planning/stories/S3-004-spec-preview.md"
+    task_ids: 8
+    blocked_by: ["S3-001"]
+    blocks: []
+    acceptance_criteria:
+      - criterion: "Renders Markdown preview of spec pack"
+        verification: "pnpm test:e2e spec-preview.spec.ts"
+
+  S3-005:
+    title: "Quality Dashboard"
+    sprint: "sprint-3"
+    domain: "frontend"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "M"
+    file_path: "planning/stories/S3-005-quality-dashboard.md"
+    task_ids: 6
+    blocked_by: ["S3-001"]
+    blocks: []
+    acceptance_criteria:
+      - criterion: "Shows confidence score"
+        verification: "pnpm test:e2e quality-dashboard.spec.ts"
+      - criterion: "Lists validation issues"
+        verification: "pnpm test:e2e quality-dashboard.spec.ts"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # SPRINT 4: EXPORT & INTEGRATION
+  # ─────────────────────────────────────────────────────────────────────────
+
+  S4-001:
+    title: "Markdown Export"
+    sprint: "sprint-4"
+    domain: "export"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "M"
+    file_path: "planning/stories/S4-001-markdown-export.md"
+    task_ids: 6
+    blocked_by: ["sprint-3"]
+    blocks: []
+    acceptance_criteria:
+      - criterion: "Exports complete Markdown spec pack"
+        verification: "pnpm test src/lib/exporters/markdown.test.ts"
+
+  S4-002:
+    title: "JSON Export"
+    sprint: "sprint-4"
+    domain: "export"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "M"
+    file_path: "planning/stories/S4-002-json-export.md"
+    task_ids: 6
+    blocked_by: ["sprint-3"]
+    blocks: []
+    acceptance_criteria:
+      - criterion: "Exports JSON matching schema"
+        verification: "pnpm test src/lib/exporters/json.test.ts"
+
+  S4-003:
+    title: "GitHub Issues Integration"
+    sprint: "sprint-4"
+    domain: "integration"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "L"
+    file_path: "planning/stories/S4-003-github-issues.md"
+    task_ids: 8
+    blocked_by: ["sprint-3"]
+    blocks: []
+    acceptance_criteria:
+      - criterion: "Creates GitHub issues from stories"
+        verification: "pnpm test src/lib/integrations/github.test.ts"
+
+  S4-004:
+    title: "Claude Code Hook"
+    sprint: "sprint-4"
+    domain: "integration"
+    status: "pending"
+    agent_type: "senior-fullstack"
+    estimated_effort: "M"
+    file_path: "planning/stories/S4-004-claude-code-hook.md"
+    task_ids: 6
+    blocked_by: ["sprint-3"]
+    blocks: []
+    acceptance_criteria:
+      - criterion: "Generates .claude/commands/ skill"
+        verification: "pnpm test src/lib/integrations/claude-code.test.ts"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# COMPUTED VIEWS
+# ═══════════════════════════════════════════════════════════════════════════
+
+views:
+  ready_for_dispatch:
+    - "S1-002"
+
+  in_progress: []
+
+  blocked_stories:
+    - story: "S1-003"
+      blocked_by: ["S1-002"]
+    - story: "S1-004"
+      blocked_by: ["S1-003"]
+    - story: "S1-005"
+      blocked_by: ["S1-004"]
+    - story: "S1-006"
+      blocked_by: ["S1-005"]
+
+# ═══════════════════════════════════════════════════════════════════════════
+# TECH STACK (Exa-verified 2026-01-17)
+# ═══════════════════════════════════════════════════════════════════════════
+
+tech_stack:
+  verified_at: "2026-01-17T04:39:00Z"
+  verification_method: "mcp__exa__web_search_exa"
+
+  frontend:
+    framework:
+      name: "Next.js"
+      version: "16.1.3"
+      verified_latest: true
+      release_date: "2025-12-18"
+      verification_source: "https://nextjs.org/blog/next-16-1"
+
+    react:
+      name: "React"
+      version: "19.2.3"
+      verified_latest: true
+      release_date: "2025-12-11"
+      verification_source: "https://github.com/facebook/react/releases"
+
+    typescript:
+      name: "TypeScript"
+      version: "5.7.0"
+      verified_latest: true
+
+    styling:
+      name: "Tailwind CSS"
+      version: "4.1.18"
+      verified_latest: true
+
+  ai:
+    primary:
+      name: "Claude"
+      model: "claude-opus-4-5-20251101"
+      provider: "Anthropic"
+
+    verification:
+      name: "Exa"
+      purpose: "Web search for tech stack verification"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# METADATA
+# ═══════════════════════════════════════════════════════════════════════════
+
+metadata:
+  schema_version: "1.0.0"
+  created_at: "2026-01-17T12:39:00Z"
+  created_by: "claude-opus-4-5"
+
+  changelog:
+    - timestamp: "2026-01-17T12:39:00Z"
+      action: "created"
+      description: "Initial status.yaml with 20 stories across 4 sprints"
+      author: "claude-opus-4-5"
